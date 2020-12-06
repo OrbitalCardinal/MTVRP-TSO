@@ -1,0 +1,41 @@
+Este algoritmo es para resolver el problema utilizando archivos con matriz de distancias.
+Es necesario contar con un archivo de texto con las matrices de distancias y con las 
+demandas de los clientes, con la capacidad del vehiculo y el limite de viajes.
+
+1.- Leer la matriz de distancias y guardarla en el arreglo "Distancias[][]"
+2.- Leer las demandas y guardar en el arreglo "Demandas[]"
+3.- Leer la capacidad del vehiculo y guardarla en la variable "Capacidad"
+4.- Leer el limite de viajes y guardarlo en la variable "Limite"
+5.- Se crean las variables "Viajes = 0", "Indicador = 0", "menor = 0", "costo = 0", "demanda = 0",
+    "posMenor = 0" y "entrar = true"
+6.- Se crea el arreglo "Visitados[]" vacio donde se iran guardando los clientes visitados
+7.- Se asigna Visitados[0] = 0
+8.- Se abre un ciclo while(Viajes <= Limite && Visitados[].length() <= Demandas[].length())
+
+9.- if(Indicador<Demandas.length-1) -> menor = Distancias[Indicador][Indicador + 1]
+	A.- else -> menor = Distancias[Indicador][Indicador-1]
+10.- Se abre un ciclo for(i = 0; i<Demandas.length(); i++) en cada iteracion se hace lo siguiente:
+	A.- Se asigna entrar = true
+	B.- Se lee el dato Distancias[Indicador][i]
+	C.- Se abre un for(dato in Visitados[]) en cada iteracion se hace lo siguiente:
+		a.- Se abre una sentencia if(i == dato)
+		b.- Si es verdadero se asigna entrar = false
+	D.- Se abre un if(entrar) si es verdadero va al paso E, si es falso vuelve al paso A con la 
+	    siguiente iteracion del for del paso 10
+
+	E.- if(Distancias[Indicador][i] < menor)
+		a.- Si es verdadero se asigna "menor = Distancias[Indicador][i]" y "posMenor = i"
+11.- Al salir del for se hace lo siguiente:
+	A.- costo = costo + menor
+	B.- demanda = demanda + Demandas[posMenor - 1]
+	C.- if(demanda > Capacidad) si es verdadero se hace lo siguiente, si es falso pasa al paso D
+		a.- Viajes++
+		b.- demanda = 0
+		c.- Indicador = 0
+	D.- else se hace lo siguiente:
+		a.- Se agrega el valor de posMenor al arreglo Visitadas[]
+		b.- Indicador = posMenor
+12.- Se cierra el ciclo while
+13. Se toman los tiempos de viaje con el arreglo de puntos visitados generado.
+14. Se realiza la suma acumulada
+13.- Se imprime el costo y el tiempo de ejecución como el valor de la funcion objetivo.

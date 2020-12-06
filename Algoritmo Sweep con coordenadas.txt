@@ -1,0 +1,38 @@
+Antes de iniciar con el algoritmo se debe tener un archivo de texto con las coordenadas de los clientes
+y uno con la demanda de los clientes y la capacidad del vehiculo. Pueden ser un solo archivo siempre y
+cuando se pueda leer correctamente
+
+1.- Leer las coordenadas del archivo de texto.
+2.- Guardar los datos recuperados en una matriz "Cordenadas[][]" con 2 columnas (cordenada X, cordenada Y).
+3.- Leer la demanda de cada cliente del archivo de texto.
+4.- La variable "i" representa el numero de cliente desde el primero hasta el numero total de clientes.
+5.- Guardar la demanda en una matriz "Demanda[]".
+6.- Guardar la capacidad del vehiculo como constante "Capacidad".
+7.- Guardar el limite de viajes en la variable "Limite".
+8.- Se crea una variable "Recorridos = 0".
+9.- Considerar el deposito central en las coordenadas obtenidas de Cordenadas[0][0] y Cordenadas[1][0].
+10.- Guardar las cordenadas del deposito en las variables "DepositoX" y "DepositoY".
+11.- Para cada otra cordenada en la matriz "Cordenadas" calcular el angulo con respecto al deposito. Usar un ciclo for
+	A.- La distancia en "X" se calcula con la formula: Cordenadas[0][i] - DepositoX
+	B.- La distancia en "Y" se calcula con la formula: Cordenadas[1][i] - DepositoY
+	C.- Se utilizan sentencias if para determinar el cuadrante del cliente "i", y determinar el angulo
+		I.- if(X > 0 && Y > 0) se usa la formula tan^-1(|Y/X|)
+		II.- if(X < 0 && Y > 0) se usa la formula 180 - tan^-1(|Y/X|)
+		III.- if(X < 0 && Y < 0) se usa la formula 180 + tan^-1(|Y/X|)
+		IV.- if(X > 0 && Y < 0) se usa la formula 360 - tan^-1(|Y/X|)
+	D.- El angulo obtenido se guarda en una matriz "Angulos[][]" 
+	    que almacena tambien el numero de cliente que coincide con la demanda.
+
+12.- La matriz Angulos se ordena de menor a mayor angulo, se debe mover la demanda tambien para que siempre coincida con su cliente.
+13.- Se recorre el arreglo ordenado de menor a mayor sumando la demanda de cada cliente y sumando el costo:
+	A.- costo = costo + Costos[cliente]
+	B.- demanda = demanda + Demanda[cliente]
+14.- Cuando la suma de la demanda supere la capacidad del vehiculo se guardaran los clientes visitados
+    y el costo total de ese recorrido. La variable Recorridos se le suma 1.
+
+15.- El programa termina cuando Recorridos es igual a Limite o cuando se han sumado todas las demandas de los clientes.
+16. Se itera sobre cada recorrido guardado
+	A. Se calcula la distancia entre cada punto del recorrido en pares.
+	B. Se realiza una suma acumulativa para obtener el costo total con latencia
+17.- Se imprime el costo total y el tiempo de ejecucion.
+
